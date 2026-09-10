@@ -1,0 +1,25 @@
+name: Free macOS Remote Desktop
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: macos-13
+    steps:
+    - name: Ngrok Download Aur Install
+      run: |
+        brew install ngrok
+
+    - name: Mac Me VNC Setup
+      run: |
+        ngrok config add-authtoken ${{ secrets.3J8Ws5G5mRMq5NITZGIxe3u90IW_3D6TnyFoF6NW76LeE1owY }}
+        
+        # Remote Screen Sharing Chalu Karne Ka Command
+        sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate -configure -access -on -clientopts -setvnclegacy -vnclegacy yes -clientopts -setvncpw -vncpw MacOSFree123 -restart -agent -privs -all
+        
+        # Mac Ka Password Set Karna
+        sudo dscl . -passwd /Users/runner MacOSFree123
+
+    - name: Tunnel Start Karo
+      run: |
+        echo "Tunnel shuru ho rahi hai..."
+        ngrok tcp 5900 --log=stdout
