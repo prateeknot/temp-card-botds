@@ -1,4 +1,4 @@
-name: Free macOS Remote Desktop (No Card Required)
+name: Free macOS Remote Desktop (Instant Link)
 on: workflow_dispatch
 
 jobs:
@@ -15,5 +15,8 @@ jobs:
 
     - name: Free Tunnel Chalu Karo
       uses: mxschmitt/action-tmate@v3
+      with:
+        limit-access-to-actor: false # YEHLINE LINK KO UNBLOCK KAREGI!
+
 
 
